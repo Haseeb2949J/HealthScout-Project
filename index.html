@@ -551,7 +551,6 @@
         }
 
         /* Responsive Styles */
-        @media (min-width: 768px) {
             /* ---------- Mobile hamburger button ---------- */
 .mobile-menu-btn {
   background: none;
@@ -607,6 +606,17 @@
 .main-nav.show {
   display: flex;
 }
+        @media (min-width: 768px) {
+            .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 
 /* ---------- Desktop: restore horizontal nav ---------- */
 @media (min-width: 768px) {
@@ -1662,6 +1672,7 @@ function addDeleteListener(button) {
 
 </body>
 </html>
+
 
 
 
