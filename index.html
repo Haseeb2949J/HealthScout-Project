@@ -165,6 +165,12 @@
             top: 0;
             z-index: 40;
         }
+        /* New: on mobile, don't stick the full nav */
+@media (max-width: 767px) {
+  .header {
+    position: relative; /* disable sticky */
+  }
+}
         .header .container {
             display: flex;
             justify-content: space-between;
@@ -1608,6 +1614,7 @@ function addDeleteListener(button) {
 
 </body>
 </html>
+
 
 
 
