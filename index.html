@@ -593,6 +593,26 @@
             100% { transform: rotate(360deg); }
         }
 
+        @media (max-width: 767px) {
+  .header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .main-nav {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+    flex-wrap: wrap; /* ensures buttons don’t overflow */
+  }
+  .main-nav .nav-buttons {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .main-nav button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
         /* Responsive Styles */
         @media (min-width: 768px) {
             .main-nav {
@@ -1588,6 +1608,7 @@ function addDeleteListener(button) {
 
 </body>
 </html>
+
 
 
 
