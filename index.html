@@ -181,6 +181,47 @@
             color: var(--green-600);
             text-decoration: none;
         }
+        .main-nav {
+            display: none; /* Hidden on mobile */
+        }
+        .main-nav a, .main-nav button {
+            font-size: 1rem;
+            text-decoration: none;
+            color: var(--gray-600);
+            transition: color 0.3s ease;
+        }
+        .main-nav a:hover {
+            color: var(--green-600);
+        }
+        .main-nav .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .main-nav button {
+            background-color: var(--green-600);
+            color: var(--white);
+            padding: 0.5rem 1.25rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .main-nav button:hover {
+            background-color: var(--green-700);
+            transform: scale(1.05);
+        }
+        #profile-btn {
+            background: none;
+            padding: 0.5rem;
+            color: var(--gray-600);
+        }
+         #profile-btn:hover {
+            background-color: var(--gray-100);
+            color: var(--gray-900);
+            transform: scale(1.1);
+        }
 
 
         /* Hero Section */
@@ -239,7 +280,6 @@
         }
         .features-grid {
             display: grid;
-            grid-template-columns: 1fr; /* ✅ Single column on small screens */
             gap: 2.5rem;
         }
         .feature-card {
@@ -350,7 +390,6 @@
         }
         .dashboard-grid {
             display: grid;
-             grid-template-columns: 1fr; /* ✅ Single column on small screens *
             gap: 2rem;
         }
         .dashboard-card {
@@ -553,126 +592,34 @@
         }
 
         /* Responsive Styles */
-            /* ---------- Mobile hamburger button ---------- */
-.mobile-menu-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: var(--gray-800);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.25rem;
-  margin-left: auto; /* push to right side */
-}
-
-/* ---------- Mobile nav (hidden by default) ---------- */
-.main-nav {
-  display: none; /* hidden until burger clicked */
-  position: absolute;
-  top: 100%;
-  right: 1rem;
-  background: var(--white);
-  border-radius: 0.5rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  padding: 0.75rem;
-  flex-direction: column;
-  gap: 0.5rem;
-  z-index: 999;
-  width: 220px;
-}
-
-/* Menu items mobile style */
-.main-nav a,
-.main-nav .nav-buttons button {
-  display: block;
-  width: 100%;
-  text-align: left;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.375rem;
-  background: none;
-  color: var(--gray-700);
-  font-weight: 600;
-  text-decoration: none;
-  border: none;
-}
-
-.main-nav a:hover,
-.main-nav button:hover {
-  background: var(--gray-50);
-  color: var(--green-600);
-}
-
-/* When menu is toggled open */
-.main-nav.show {
-  display: flex;
-}
-        
-
-/* ---------- Desktop: restore horizontal nav ---------- */
-/* Tablet & Desktop layout */
-@media (min-width: 768px) {
-  /* Hide burger menu on desktop */
-  .mobile-menu-btn { 
-    display: none; 
-  }
-
-  /* Desktop navigation */
-  .main-nav {
-    display: flex !important;  /* horizontal layout */
-    position: static;
-    flex-direction: row;
-    gap: 2rem;
-    background: transparent;
-    box-shadow: none;
-    padding: 0;
-    align-items: center;
-    min-width: 0;
-  }
-
-  .main-nav a,
-  .main-nav button {
-    width: auto;
-    padding: 0;
-    text-align: center;
-    color: var(--gray-600);
-    background: none;
-  }
-
-  /* Features section (3 steps) */
-  .features-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  /* Dashboard layout */
-  .dashboard-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .dashboard-grid .map-card {
-    grid-column: span 3;
-  }
-  .dashboard-grid .env-card {
-    grid-column: span 1;
-  }
-  .dashboard-grid .reports-card {
-    grid-column: span 2;
-  }
-  .dashboard-grid .advisory-card,
-  .dashboard-grid .summary-card {
-    grid-column: span 3;
-  }
-
-  /* Hero heading size (bigger on desktop) */
-  .hero-bg h2 {
-    font-size: 3.75rem;
-  }
-}
-
-
-           
-        
+        @media (min-width: 768px) {
+            .main-nav {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+            }
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .dashboard-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .dashboard-grid .map-card {
+                grid-column: span 3 / span 3;
+            }
+             .dashboard-grid .env-card {
+                grid-column: span 1 / span 1;
+            }
+            .dashboard-grid .reports-card {
+                 grid-column: span 2 / span 2;
+            }
+            .dashboard-grid .advisory-card, .dashboard-grid .summary-card {
+                grid-column: span 3 / span 3;
+            }
+            .hero-bg h2 {
+                font-size: 3.75rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -726,10 +673,6 @@
                     <i data-lucide="shield-check"></i>
                     <span>HealthScout AI</span>
                 </a>
-                 <!-- Hamburger menu button -->
-    <button id="menu-toggle" class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
-      <i data-lucide="menu"></i>
-    </button>
                 <nav class="main-nav">
                     <a href="#how-it-works">How It Works</a>
                     <a href="#dashboard">Live Dashboard</a>
@@ -989,43 +932,6 @@
                 appId: "1:826645153981:web:6761ec5da1060b62cf8fd4",
                 measurementId: "G-JXM98NQE47"
             };
-
-            // ------------- Mobile menu toggle -------------
-const menuToggleBtn = document.getElementById('menu-toggle');
-const mainNav = document.querySelector('.main-nav');
-
-if (menuToggleBtn && mainNav) {
-  // Toggle menu open/close
-  menuToggleBtn.addEventListener('click', (ev) => {
-    ev.stopPropagation();
-    const isOpen = mainNav.classList.toggle('show');
-    menuToggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
-
-  // Close menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!mainNav.contains(e.target) && e.target !== menuToggleBtn) {
-      mainNav.classList.remove('show');
-      menuToggleBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // Hide menu when a nav link/button is clicked
-  mainNav.querySelectorAll('a, button').forEach(item => {
-    item.addEventListener('click', () => {
-      mainNav.classList.remove('show');
-      menuToggleBtn.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  // Reset on resize to desktop
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 768) {
-      mainNav.classList.remove('show');
-      menuToggleBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-}
 
             // --- Current Time Updater ---
 function updateTime() {
@@ -1680,11 +1586,6 @@ function addDeleteListener(button) {
 
 </body>
 </html>
-
-
-
-
-
 
 
 
