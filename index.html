@@ -239,6 +239,7 @@
         }
         .features-grid {
             display: grid;
+            grid-template-columns: 1fr; /* ✅ Single column on small screens */
             gap: 2.5rem;
         }
         .feature-card {
@@ -349,6 +350,7 @@
         }
         .dashboard-grid {
             display: grid;
+             grid-template-columns: 1fr; /* ✅ Single column on small screens *
             gap: 2rem;
         }
         .dashboard-card {
@@ -606,24 +608,19 @@
 .main-nav.show {
   display: flex;
 }
-        @media (min-width: 768px) {
-            .main-nav {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-    }
-    .features-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
+        
 
 /* ---------- Desktop: restore horizontal nav ---------- */
+/* Tablet & Desktop layout */
 @media (min-width: 768px) {
-  .mobile-menu-btn { display: none; } /* hide burger on desktop */
+  /* Hide burger menu on desktop */
+  .mobile-menu-btn { 
+    display: none; 
+  }
 
+  /* Desktop navigation */
   .main-nav {
-    display: flex !important;  /* horizontal on desktop */
+    display: flex !important;  /* horizontal layout */
     position: static;
     flex-direction: row;
     gap: 2rem;
@@ -642,29 +639,40 @@
     color: var(--gray-600);
     background: none;
   }
+
+  /* Features section (3 steps) */
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Dashboard layout */
+  .dashboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .dashboard-grid .map-card {
+    grid-column: span 3;
+  }
+  .dashboard-grid .env-card {
+    grid-column: span 1;
+  }
+  .dashboard-grid .reports-card {
+    grid-column: span 2;
+  }
+  .dashboard-grid .advisory-card,
+  .dashboard-grid .summary-card {
+    grid-column: span 3;
+  }
+
+  /* Hero heading size (bigger on desktop) */
+  .hero-bg h2 {
+    font-size: 3.75rem;
+  }
 }
-            .features-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .dashboard-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .dashboard-grid .map-card {
-                grid-column: span 3 / span 3;
-            }
-             .dashboard-grid .env-card {
-                grid-column: span 1 / span 1;
-            }
-            .dashboard-grid .reports-card {
-                 grid-column: span 2 / span 2;
-            }
-            .dashboard-grid .advisory-card, .dashboard-grid .summary-card {
-                grid-column: span 3 / span 3;
-            }
-            .hero-bg h2 {
-                font-size: 3.75rem;
-            }
-        }
+
+
+           
+        
     </style>
 </head>
 <body>
@@ -1672,6 +1680,7 @@ function addDeleteListener(button) {
 
 </body>
 </html>
+
 
 
 
