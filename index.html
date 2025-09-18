@@ -1519,7 +1519,12 @@ function addDeleteListener(button) {
                 const resultText = await callGemini(payload, safetyTipsContainer);
 
                 if (resultText) {
-                     safetyTipsContainer.innerHTML = resultText.replace(/\n/g, '<br>');
+                    const cleanText = resultText
+                     .replace(/```html/gi, "")
+                     .replace(/```/g, "")
+                     .trim();
+                    
+                    safetyTipsContainer.innerHTML = `<div class="ai-output">${cleanText}</div>`;
                 }
 
                 e.target.disabled = false;
@@ -1581,5 +1586,6 @@ function addDeleteListener(button) {
 
 </body>
 </html>
+
 
 
