@@ -980,7 +980,7 @@ setInterval(updateTime, 1000);
 
             // STEP 2: Paste your Google AI Gemini API key here.
             // Get a free key from Google AI Studio: https://aistudio.google.com/
-            const GEMINI_API_KEY = "AIzaSyCKIA3z41kJpx4bzuILIw05O2RGS7xchiA"; // <--- PASTE YOUR GEMINI API KEY HERE
+            const GEMINI_API_KEY = "https://your-worker-name.username.workers.dev"; 
 
 
             // #######################################################################
@@ -1431,44 +1431,48 @@ setInterval(updateTime, 1000);
             const modalContentBody = document.getElementById('modal-content-body');
             
             async function callGemini(payload, targetElement) {
-                if (!GEMINI_API_KEY) {
-                    const errorMsg = "ACTION REQUIRED: Your Gemini API Key is missing. The AI features cannot work until you get a free key from Google AI Studio and paste it into the `GEMINI_API_KEY` constant in the `index.html` file.";
-                    console.error(errorMsg);
-                    if (targetElement) {
-                        targetElement.innerHTML = `<p style="color: #dc2626;">${errorMsg}</p>`;
-                    }
-                    alert(errorMsg);
-                    return null;
-                }
-                
-                if(targetElement) {
-                   targetElement.innerHTML = '<div style="display: flex; justify-content: center; padding: 2rem;"><div class="spinner" style="width: 36px; height: 36px;"></div></div>';
-                }
-                
-                try {
-                    const response = await fetch(API_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    const result = await response.json();
-                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                    if (text) {
-                        return text;
-                    } else {
-                        throw new Error("No content received from API.");
-                    }
-                } catch (error) {
-                    console.error("Error calling Gemini API:", error);
-                    const errorMsg = "AI analysis failed. Please check your Gemini API key and ensure the 'Generative Language API' is enabled in your Google Cloud project.";
-                     if (targetElement) {
-                        targetElement.innerHTML = `<p style="color: #dc2626;">${errorMsg}</p>`;
-                    }
-                    alert(errorMsg);
-                    return null;
-                }
-            }
+  if (targetElement) {
+    targetElement.innerHTML =
+      '<div style="display:flex;justify-content:center;padding:2rem;"><div class="spinner" style="width:36px;height:36px;"></div></div>';
+  }
+
+  try {
+    const prompt = payload?.contents?.[0]?.parts?.[0]?.text;
+    const imageBase64 = payload?.contents?.[0]?.parts?.[1]?.inlineData?.data || null;
+
+    const resp = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt, imageBase64 }),
+    });
+
+    if (!resp.ok) {
+      throw new Error("Worker response was not ok: " + resp.status);
+    }
+
+    const result = await resp.json();
+
+    const text =
+      result?.candidates?.[0]?.content?.parts?.[0]?.text ||
+      result?.candidates?.[0]?.output?.text ||
+      result?.output?.text ||
+      null;
+
+    if (!text && targetElement) {
+      targetElement.innerHTML =
+        `<pre style="font-size:12px;max-height:300px;overflow:auto;">${JSON.stringify(result, null, 2)}</pre>`;
+    }
+
+    return text || null;
+  } catch (err) {
+    console.error("Error calling Worker:", err);
+    if (targetElement) {
+      targetElement.innerHTML = `<p style="color:#dc2626;">AI request failed. Check console.</p>`;
+    }
+    return null;
+  }
+}
+
             
             const analyzeButtonHandler = async (button) => {
                 const location = button.dataset.location;
@@ -1614,6 +1618,7 @@ function addDeleteListener(button) {
 
 </body>
 </html>
+
 
 
 
