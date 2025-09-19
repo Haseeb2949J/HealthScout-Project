@@ -1443,7 +1443,7 @@ setInterval(updateTime, 1000);
     const resp = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt, imageBase64 }),
+      body: JSON.stringify(payload),   // ✅ send the payload directly
     });
 
     if (!resp.ok) {
@@ -1618,6 +1618,7 @@ function addDeleteListener(button) {
 
 </body>
 </html>
+
 
 
 
