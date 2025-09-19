@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthScout AI - Community Health Monitoring</title>
-    <!-- Google Fonts -->
+    <title>HealthScout AI - Community Health Monitoring</title>    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <style>
-        /* General Resets and Body Styles */
         :root {
             --green-600: #16a34a;
             --green-700: #15803d;
@@ -42,8 +39,6 @@
             color: var(--gray-800);
             line-height: 1.6;
         }
-
-        /* Utility Classes */
         .hidden {
             display: none !important;
         }
@@ -55,8 +50,6 @@
             padding-left: 1.5rem;
             padding-right: 1.5rem;
         }
-        
-        /* Fullscreen Loader */
         .loader-overlay {
             position: fixed;
             inset: 0;
@@ -72,8 +65,6 @@
             font-weight: 500;
             color: var(--gray-600);
         }
-
-        /* Login Page */
         .login-page {
             position: fixed;
             inset: 0;
@@ -155,8 +146,6 @@
         .btn-danger:hover {
             background-color: var(--red-600);
         }
-
-        /* Header */
         .header {
             background-color: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(4px);
@@ -165,10 +154,9 @@
             top: 0;
             z-index: 40;
         }
-        /* New: on mobile, don't stick the full nav */
 @media (max-width: 767px) {
   .header {
-    position: relative; /* disable sticky */
+    position: relative; 
   }
 }
         .header .container {
@@ -188,7 +176,7 @@
             text-decoration: none;
         }
         .main-nav {
-            display: flex; /* Hidden on mobile */
+            display: flex; 
             align-items: center;
             gap: 1rem;
         }
@@ -232,7 +220,6 @@
         }
 
 
-        /* Hero Section */
         .hero-bg {
             padding: 6rem 0;
             color: var(--white);
@@ -268,7 +255,6 @@
             background-color: #f3f4f6;
         }
 
-        /* Sections & Cards */
         .section {
             padding: 5rem 0;
         }
@@ -319,7 +305,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Dashboard */
         .dashboard {
             background-color: var(--gray-100);
         }
@@ -459,7 +444,7 @@
             animation: fadeInHighlight 2s ease-out;
         }
 
-        /* Environment Card */
+       
         .environment-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -507,7 +492,7 @@
 
 
 
-        /* Footer */
+        
         .footer {
             background-color: var(--gray-900);
             color: var(--white);
@@ -518,7 +503,7 @@
         .footer .logo { justify-content: center; color: var(--white); font-size: 1.25rem; }
         .footer .copy { font-size: 0.875rem; margin-top: 1.5rem; color: #6b7280; }
 
-        /* Modal */
+       
         .modal {
             position: fixed;
             inset: 0;
@@ -551,7 +536,7 @@
             overflow-y: auto;
         }
         
-        /* Profile Modal Specifics */
+        
         .profile-modal-body {
             text-align: center;
         }
@@ -585,7 +570,7 @@
             color: var(--gray-900);
         }
 
-        /* Spinner */
+        
         .spinner {
             border: 4px solid rgba(0, 0, 0, 0.1);
             width: 20px;
@@ -608,7 +593,7 @@
     width: 100%;
     justify-content: flex-start;
     margin-top: 0.5rem;
-    flex-wrap: wrap; /* ensures buttons don’t overflow */
+    flex-wrap: wrap; 
   }
   .main-nav .nav-buttons {
     gap: 0.5rem;
@@ -619,7 +604,7 @@
     font-size: 0.875rem;
   }
 }
-        /* Responsive Styles */
+        
         @media (min-width: 768px) {
             .main-nav {
                 display: flex;
@@ -656,7 +641,7 @@
         <p class="loader-text">Loading...</p>
     </div>
 
-    <!-- Login Page -->
+    
     <div id="login-page" class="login-page">
         <div class="login-box">
             <div class="login-title">
@@ -692,8 +677,7 @@
             </p>
         </div>
     </div>
-
-    <!-- Main Content (Initially Hidden) -->
+    
     <div id="main-content" class="hidden">
         <header class="header">
             <div class="container">
@@ -828,8 +812,7 @@
                 </div>
             </section>
         </main>
-        
-        <!-- AI Analysis Modal -->
+
         <div id="ai-modal" class="modal hidden">
             <div class="modal-content">
                 <div class="modal-header">
@@ -840,7 +823,6 @@
             </div>
         </div>
         
-        <!-- Report Issue Modal -->
         <div id="report-modal" class="modal hidden">
             <div class="modal-content" style="max-width: 32rem;">
                 <div class="modal-header">
@@ -877,7 +859,6 @@
             </div>
         </div>
 
-        <!-- Profile Modal -->
         <div id="profile-modal" class="modal hidden">
             <div class="modal-content" style="max-width: 28rem;">
                 <div class="modal-header">
@@ -914,9 +895,7 @@
         </footer>
     </div>
 
-    <!-- Firebase SDK -->
     <script type="module">
-        // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
         import { 
@@ -941,16 +920,7 @@
 
         window.addEventListener('load', (event) => {
             lucide.createIcons();
-            
-            // --- Firebase & API Key Setup ---
-            // #######################################################################
-            // ##                                                                   ##
-            // ##  ACTION REQUIRED: COMPLETE THESE TWO SETUP STEPS                  ##
-            // ##                                                                   ##
-            // #######################################################################
-
-            // STEP 1: Paste your Firebase project configuration object here.
-            // Find this in your Firebase project settings.
+                        
             const firebaseConfig = {
                 apiKey: "AIzaSyCweBoUJg4BIChGw5UQe7zjkOXYAfsF2mQ",
                 authDomain: "healthscoutai-a6a1a.firebaseapp.com",
@@ -961,7 +931,6 @@
                 measurementId: "G-JXM98NQE47"
             };
 
-            // --- Current Time Updater ---
 function updateTime() {
     const now = new Date();
     const options = { 
@@ -969,35 +938,21 @@ function updateTime() {
         minute: 'numeric', 
         second: 'numeric',
         hour12: true, 
-        timeZone: 'Asia/Kolkata' // IST timezone
+        timeZone: 'Asia/Kolkata' 
     };
     document.getElementById('time-display').textContent = now.toLocaleString('en-IN', options) + " IST";
 }
 
-// Update immediately and then every second
+
 updateTime();
 setInterval(updateTime, 1000);
 
-            // STEP 2: Paste your Google AI Gemini API key here.
-            // Get a free key from Google AI Studio: https://aistudio.google.com/
-            const API_URL = "https://healthscout.haseebrahman540.workers.dev/"; 
-
-
-            // #######################################################################
-            // ##                                                                   ##
-            // ##  END OF REQUIRED SETUP                                            ##
-            // ##                                                                   ##
-            // #######################################################################
-
-
-            // Initialize Firebase
+            
+            const API_URL = "https://healthscout.haseebrahman540.workers.dev/";             
             const app = initializeApp(firebaseConfig);
             const analytics = getAnalytics(app);
             const auth = getAuth(app);
             const db = getFirestore(app);
-
-
-            // --- Element Declarations ---
             const loader = document.getElementById('loader');
             const loginPage = document.getElementById('login-page');
             const mainContent = document.getElementById('main-content');
@@ -1038,7 +993,6 @@ setInterval(updateTime, 1000);
             let currentUser = null;
             let unsubscribeReports = null;
 
-            // --- Auth UI Toggle ---
             authToggleLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 isSignUp = !isSignUp;
@@ -1060,7 +1014,6 @@ setInterval(updateTime, 1000);
                 }
             });
 
-            // --- Firebase Auth Logic ---
              authForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 authError.textContent = '';
@@ -1072,7 +1025,7 @@ setInterval(updateTime, 1000);
 
 
                 if (isSignUp) {
-                    // Handle Sign Up
+
                     const confirmPassword = confirmPasswordInput.value;
                     if (password !== confirmPassword) {
                         authError.textContent = 'Passwords do not match.';
@@ -1098,7 +1051,7 @@ setInterval(updateTime, 1000);
                             }
                         });
                 } else {
-                    // Handle Sign In
+                    
                     signInWithEmailAndPassword(auth, email, password)
                         .catch(error => {
                             console.error("Sign in error:", error.code);
@@ -1115,25 +1068,20 @@ setInterval(updateTime, 1000);
             logoutBtn.addEventListener('click', () => {
                 signOut(auth);
             });
-
-            // --- Auth State Listener ---
             onAuthStateChanged(auth, (user) => {
                 if (user) {
-                    // User is signed in, show the main content immediately
                     currentUser = user;
                     profileEmailDisplay.textContent = user.email;
                     loginPage.classList.add('hidden');
                     mainContent.classList.remove('hidden');
-                    updateLocation('Dibiyapur, Uttar Pradesh');
+                    updateLocation('Lucknow, Uttar Pradesh');
                     
-                    // Fetch reports in the background
                     fetchUserReports(user.uid);
                     
                     authBtn.disabled = false;
                     authBtn.innerHTML = `<span>${isSignUp ? 'Sign Up' : 'Sign In'}</span>`;
 
                 } else {
-                    // User is signed out
                     currentUser = null;
                     if (unsubscribeReports) {
                         unsubscribeReports();
@@ -1147,7 +1095,6 @@ setInterval(updateTime, 1000);
                 }
             });
 
-            // --- Modal Handling ---
             reportIssueBtn.addEventListener('click', () => reportModal.classList.remove('hidden'));
             profileBtn.addEventListener('click', () => profileModal.classList.remove('hidden'));
             
@@ -1163,8 +1110,6 @@ setInterval(updateTime, 1000);
                     if (e.target === modal) modal.classList.add('hidden');
                 });
             });
-
-            // --- Location & Environment Data Logic ---
             const cities = [
                 "Mumbai, Maharashtra", "Delhi, Delhi", "Bengaluru, Karnataka", "Ahmedabad, Gujarat", "Hyderabad, Telangana",
                 "Chennai, Tamil Nadu", "Kolkata, West Bengal", "Pune, Maharashtra", "Jaipur, Rajasthan", "Surat, Gujarat",
@@ -1229,9 +1174,8 @@ setInterval(updateTime, 1000);
             }
             
             function fetchAndDisplayEnvironmentalData(location) {
-                // Mock data generation
-                const temp = (location.length % 18) + 20; // 20-37°C
-                const aqi = (location.length * 7 % 250) + 10; // 10-260
+                const temp = (location.length % 18) + 20; /
+                const aqi = (location.length * 7 % 250) + 10;
                 const pollen = ['Low', 'Medium', 'High'][(location.length % 3)];
                 const conditions = ['Sunny', 'Cloudy', 'Hazy', 'Light Rain'][(location.length % 4)];
 
@@ -1300,8 +1244,6 @@ setInterval(updateTime, 1000);
                 }
             });
 
-
-            // --- Report Submission & Firestore Logic ---
             const createReportElement = (report) => {
     let riskClass = 'medium-risk';
     let analyzeClass = '';
@@ -1338,7 +1280,7 @@ setInterval(updateTime, 1000);
 
             const renderReports = (reports) => {
                 reportsLoader.classList.add('hidden');
-                recentReportsContainer.innerHTML = ''; // Clear existing reports
+                recentReportsContainer.innerHTML = ''; 
                 if (reports.length === 0) {
                     noReportsMessage.classList.remove('hidden');
                 } else {
@@ -1417,19 +1359,14 @@ setInterval(updateTime, 1000);
                     alert("Submission failed. Your report was not saved. Please check your Firestore rules or internet connection.");
                 })
                 .finally(() => {
-                    // Re-enable the button regardless of the outcome.
                     submitButton.disabled = false;
                     submitButton.innerHTML = '<span>Submit Report</span>';
                 });
-                // --- End: New Instant UI Update Logic ---
+
             });
 
-
-            // --- Gemini API ---
-            
-            
-            const modalContentBody = document.getElementById('modal-content-body');
-            
+                        
+            const modalContentBody = document.getElementById('modal-content-body');          
             async function callGemini(payload, targetElement) {
   if (targetElement) {
     targetElement.innerHTML =
@@ -1440,7 +1377,7 @@ setInterval(updateTime, 1000);
     const resp = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),   // ✅ send the full payload
+      body: JSON.stringify(payload),   
     });
 
     if (!resp.ok) {
@@ -1500,8 +1437,6 @@ function addDeleteListener(button) {
     });
 }
             
-            // --- AI Summary Feature ---
-            // Minimal helper: convert **bold** markdown to <strong>
 function boldMarkdownToHtml(text) {
   return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
 }
@@ -1614,6 +1549,7 @@ function boldMarkdownToHtml(text) {
 
 </body>
 </html>
+
 
 
 
