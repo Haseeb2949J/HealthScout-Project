@@ -1437,33 +1437,24 @@ setInterval(updateTime, 1000);
   }
 
   try {
-    const prompt = payload?.contents?.[0]?.parts?.[0]?.text;
-    const imageBase64 = payload?.contents?.[0]?.parts?.[1]?.inlineData?.data || null;
-
     const resp = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),   // ✅ send the payload directly
+      body: JSON.stringify(payload),   // ✅ send the full payload
     });
 
     if (!resp.ok) {
-      throw new Error("Worker response was not ok: " + resp.status);
+      console.error("Worker returned error:", resp.status);
+      if (targetElement) {
+        targetElement.innerHTML = `<p style="color:red;">AI request failed (${resp.status}).</p>`;
+      }
+      return null;
     }
 
     const result = await resp.json();
+    const text = result?.candidates?.[0]?.content?.parts?.[0]?.text || null;
+    return text;
 
-    const text =
-      result?.candidates?.[0]?.content?.parts?.[0]?.text ||
-      result?.candidates?.[0]?.output?.text ||
-      result?.output?.text ||
-      null;
-
-    if (!text && targetElement) {
-      targetElement.innerHTML =
-        `<pre style="font-size:12px;max-height:300px;overflow:auto;">${JSON.stringify(result, null, 2)}</pre>`;
-    }
-
-    return text || null;
   } catch (err) {
     console.error("Error calling Worker:", err);
     if (targetElement) {
@@ -1472,6 +1463,7 @@ setInterval(updateTime, 1000);
     return null;
   }
 }
+
 
             
             const analyzeButtonHandler = async (button) => {
@@ -1618,6 +1610,7 @@ function addDeleteListener(button) {
 
 </body>
 </html>
+
 
 
 
