@@ -1501,6 +1501,10 @@ function addDeleteListener(button) {
 }
             
             // --- AI Summary Feature ---
+            // Minimal helper: convert **bold** markdown to <strong>
+function boldMarkdownToHtml(text) {
+  return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+}
             const getSummaryBtn = document.getElementById('get-summary-btn');
             const summaryContainer = document.getElementById('summary-container');
 
@@ -1524,7 +1528,7 @@ function addDeleteListener(button) {
                 const resultText = await callGemini(payload, summaryContainer);
 
                 if (resultText) {
-                     summaryContainer.innerHTML = resultText.replace(/\n/g, '<br>');
+                     summaryContainer.innerHTML = boldMarkdownToHtml(resultText).replace(/\n/g, '<br>');
                 }
 
                 e.target.disabled = false;
@@ -1610,6 +1614,7 @@ function addDeleteListener(button) {
 
 </body>
 </html>
+
 
 
 
